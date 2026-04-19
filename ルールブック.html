@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スポットライト・ダイブ ルールブック β版</title>
+    <style>
+        /* ========== リセット ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== 基本スタイル（画面＆印刷共通） ========== */
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', 'MS PGothic', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.7;
+            color: #1e2a3a;
+            background-color: #fefaf0;
+        }
+
+        /* 見出し */
+        h1 {
+            font-size: 2.2rem;
+            border-bottom: 4px solid #ffaa00;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1e2a3a;
+            clear: both;
+        }
+        h2 {
+            font-size: 1.7rem;
+            border-left: 8px solid #ffaa00;
+            padding-left: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            background: #fff6e5;
+            line-height: 1.3;
+        }
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #ffcc88;
+            padding-bottom: 0.3rem;
+            color: #2c3e50;
+        }
+
+        /* 段落・テキスト */
+        p {
+            margin: 0.8rem 0;
+            text-align: justify;
+        }
+        .note {
+            background: #fff6e5;
+            padding: 0.8rem 1.5rem;
+            border-left: 5px solid #ffaa00;
+            margin: 1.2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* 表 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.6rem;
+            vertical-align: top;
+        }
+        th {
+            background-color: #fff1e0;
+            font-weight: bold;
+        }
+
+        /* ジョブストーリー */
+        .job-story {
+            background: #fffef7;
+            border-left: 6px solid #ffaa00;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+        .job-image {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+            border-radius: 16px;
+            background-color: #f0f0f0;
+            padding: 8px;
+        }
+
+        /* 目次 */
+        .toc ul {
+            columns: 2;
+            column-gap: 2rem;
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 0.3rem 0;
+            break-inside: avoid;
+        }
+
+        /* Q&A */
+        .qa-block {
+            margin: 1.5rem 0;
+        }
+        .qa-question {
+            font-weight: bold;
+            color: #c97e00;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .qa-answer {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 表紙 */
+        .cover {
+            text-align: center;
+            margin: 2rem 0 4rem;
+        }
+        .cover h1 {
+            font-size: 3rem;
+            border: none;
+            margin-bottom: 0.5rem;
+        }
+        .cover h2 {
+            font-size: 1.6rem;
+            border: none;
+            background: none;
+            margin-top: 0;
+        }
+        .cover-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 2ページ目のタイトル部分（目次上部） */
+        .title-page {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .title-page h1 {
+            font-size: 2.5rem;
+            border: none;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        .title-page h2 {
+            font-size: 1.4rem;
+            border: none;
+            background: none;
+            margin-top: 0;
+            padding-left: 0;
+        }
+        .title-page p {
+            margin: 0.3rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f0e0c0;
+            color: #8b7a66;
+            font-size: 0.8rem;
+        }
+
+        /* ========== レスポンシブ（画面表示のみ） ========== */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            table { font-size: 0.8rem; }
+            .toc ul {
+                columns: 1;
+            }
+            .job-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .job-image {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        /* ========== 印刷用最適化 ========== */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+                font-size: 10pt;
+                line-height: 1.4;
+                color: black;
+            }
+
+            /* ページ設定（余白を上下左右10mmに統一） */
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+
+            /* 表紙は必ず独立したページに（画像のみ） */
+            .cover {
+                page-break-after: always;
+                margin: 0;
+                padding: 0;
+            }
+            .cover-image {
+                max-width: 100%;
+                max-height: 260mm;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                margin-bottom: 0;
+            }
+            /* 表紙内のテキストは非表示（2ページ目に表示するため） */
+            .cover h1, .cover h2, .cover p {
+                display: none;
+            }
+
+            /* 見出しと直後の要素が別ページにならないように */
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+            h1, h2, h3 {
+                margin-top: 1.2rem;
+                margin-bottom: 0.6rem;
+            }
+            /* 見出しの直後に改ページが入らないように */
+            h1 + *, h2 + *, h3 + * {
+                page-break-before: avoid;
+            }
+
+            /* 段落・リスト・テーブル・ジョブストーリーは途中で改ページされないように */
+            p, ul, ol, table, .note, .job-story, .qa-block {
+                page-break-inside: avoid;
+            }
+
+            /* ジョブ画像は見出しと一緒に */
+            .job-header {
+                page-break-inside: avoid;
+            }
+            .job-image {
+                max-width: 200px;
+                max-height: 200px;
+                width: auto;
+                height: auto;
+            }
+
+            /* 目次も改ページされないように */
+            .toc {
+                page-break-before: avoid;
+                page-break-after: avoid;
+            }
+
+            /* 背景色や影を抑制（印刷時に見づらくなるため） */
+            .note, .job-story {
+                background: none;
+                box-shadow: none;
+                border-left: 2px solid #aaa;
+            }
+            th {
+                background-color: #f0f0f0;
+            }
+
+            /* リンクは黒字に */
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            /* 不要な空白を削除 */
+            body {
+                padding: 0;
+            }
+            .cover {
+                margin: 0;
+                padding: 0;
+            }
+            .title-page {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 表紙（1ページ目：画像のみ） -->
+<div class="cover">
+    <img src="images/cover.png" alt="スポットライト・ダイブ 表紙" class="cover-image">
+    <h1>⚡ スポットライト・ダイブ ⚡</h1>
+    <h2>〜俺たちの主人公争奪戦〜</h2>
+    <p style="margin-top: 2rem;">ルールブック β版</p>
+    <p>© 2026 スポットライト・ダイブ製作委員会</p>
+    <p style="font-size: 0.9rem; color: #c97e00;">※このバージョンはテストプレイ用です。内容は予告なく変更されることがあります。</p>
+</div>
+
+<!-- 2ページ目：タイトル情報 + 目次 -->
+<div class="title-page">
+    <h1>⚡ スポットライト・ダイブ ⚡</h1>
+    <h2>〜俺たちの主人公争奪戦〜</h2>
+    <p>ルールブック β版</p>
+    <p>© 2026 スポットライト・ダイブ製作委員会</p>
+    <p style="font-size: 0.9rem; color: #c97e00;">※このバージョンはテストプレイ用です。内容は予告なく変更されることがあります。</p>
+</div>
+
+<div class="toc">
+    <h1>📖 目次</h1>
+    <ul>
+        <li>1. はじめに——このゲームでできること</li>
+        <li>2. ゲームの準備</li>
+        <li>3. キャラクター作成</li>
+        <li>4. 判定のルール</li>
+        <li>5. スポットライトとドラマチックポイント</li>
+        <li>6. 戦闘ルール（詳細）</li>
+        <li>7. 防御の詳細ルール</li>
+        <li>8. 装甲と武器耐久ルール</li>
+        <li>9. 武器防御ルール</li>
+        <li>10. トークンルール</li>
+        <li>11. ジョブの物語——君は、どんな主人公になる？</li>
+        <li>12. 固有スキル一覧</li>
+        <li>13. 必殺技——極限の一瞬</li>
+        <li>14. 技能一覧（詳細解説付き）</li>
+        <li>15. ロールプレイを盛り上げるシステム</li>
+        <li>16. ロールプレイが苦手な方向け補助ルール</li>
+        <li>17. GM（原作者）の役割</li>
+        <li>18. 用語集</li>
+        <li>19. アドバンスド・ロールプレイ・ルール（任意）</li>
+        <li>20. 配信・二次創作ガイドライン</li>
+    </ul>
+</div>
+
+<!-- 以下、本文（内容は従来通り） -->
+<h1>1. はじめに——このゲームでできること</h1>
+<p>ようこそ、『スポットライト・ダイブ』の世界へ。このゲームは<strong>「遊んで楽しい、見て楽しいTRPG」</strong>を目指して生まれました。テーブルを囲む全員が、同じ物語の中で「自分こそが主人公だ」と叫び合う——それがこのゲームの根幹です。</p>
+<p>あなたは物語のキャラクターとなり、原作者（GM）が用意した世界で自由に行動します。ただ一つ違うのは——みんな、自分こそが主人公だと思っていることです。</p>
+<p>主人公になれるのはたった一人。最後に最も多くの「スポットライト（見せ場）」を獲得した者だけが、その栄誉を手にします。協力しながら競い合い、最後には誰かの主人公を讃える——この「協力と競争」の絶妙なバランスこそが、本作の最大の魅力です。</p>
+<div class="note">さあ、お前も今日から主人公だ。</div>
+
+<h1>2. ゲームの準備</h1>
+<p>必要なもの：このルールブック、6面ダイス（2d6）を人数分＋数個、キャラクターシート、筆記用具、スポットライト獲得数とドラマチックポイント記録用のチップやメモ。</p>
+<p>役割：プレイヤー（PL）はキャラクターを演じます。ゲームマスター（GM／原作者）は物語の舞台を用意し、世界を動かす人。勝敗はシステムが決めるため、GMは「最も面白い展開」を追いかけることに集中できます。</p>
+
+<h1>3. キャラクター作成（10分で完了）</h1>
+<h2>3.1 ジョブを選ぶ</h2>
+<p>16種類のジョブから一つを選びます（詳細は「11. ジョブの物語」参照）。</p>
+<h2>3.2 ステータスを決める</h2>
+<p>以下の5つのステータスを、それぞれ<strong>1d6を振って決定</strong>します（好みで割り振ってもOK）。</p>
+<table>
+    <thead> <tr><th>ステータス</th><th>説明</th></tr> </thead>
+    <tbody>
+        <tr><td>運</td><td>ツキの強さ。奇跡を起こす力。</td></tr>
+        <tr><td>人間性</td><td>人を惹きつける魅力、カリスマ。</td></tr>
+        <tr><td>体力</td><td>タフネス。HPのベース。</td></tr>
+        <tr><td>力</td><td>物理的なパワー。</td></tr>
+        <tr><td>頭脳</td><td>知能、知識、ひらめき。</td></tr>
+    </tbody>
+</table>
+<p><strong>HPの計算</strong>：体力 ＋ 力 ＋ 5</p>
+<h2>3.3 技能値を決める</h2>
+<ul>
+    <li>全25技能、<strong>初期値は「4」</strong>。</li>
+    <li>ジョブの<strong>得意技能（3つ）</strong>は初期値 <strong>「6」</strong>。</li>
+    <li>ジョブの<strong>不得意技能（2つ）</strong>は初期値 <strong>「3」</strong>。</li>
+    <li><strong>技能強化ポイント</strong> = 5つのステータスの<strong>合計値</strong>。</li>
+    <li>このポイントを任意の技能に割り振ることで、技能値を上げられます。上限は<strong>10</strong>。</li>
+</ul>
+<div class="note">例：ステータス合計が18なら技能強化ポイントは18。剣術（得意）を6→9に（3消費）、格闘を4→5に（1消費）など。</div>
+
+<h2>3.4 キャッチフレーズを決める</h2>
+<p>キャラクターを一言で表すキャッチフレーズを決めます。たとえば「俺は負けない！」「笑顔は最強の武器だ」など。セッション中、自然なタイミングでこのフレーズを口にすると、GMの判断でスポットライト獲得数が+1されます。</p>
+<p>自分のキャラクターらしさが伝わる、印象的なフレーズを考えましょう。決め台詞として戦闘開始時やピンチの場面で使うと効果的です。</p>
+
+<h2>3.5 PC間の関係性（推奨）</h2>
+<p>他のプレイヤーキャラクター（PC）との関係性を決めておくと、ロールプレイがぐっと深まります。下の表を参考に、1d6を振ってランダムに決めても、話し合って自由に決めても構いません。</p>
+<table>
+    <thead> <tr><th>1d6</th><th>関係性</th></tr> </thead>
+    <tbody>
+        <tr><td>1</td><td>幼なじみ</td></tr>
+        <tr><td>2</td><td>ライバル</td></tr>
+        <tr><td>3</td><td>恩人／助けた相手</td></tr>
+        <tr><td>4</td><td>生き別れの兄弟</td></tr>
+        <tr><td>5</td><td>兄弟子／弟弟子</td></tr>
+        <tr><td>6</td><td>因縁の相手</td></tr>
+    </tbody>
+</table>
+<p>関係性が決まったら、互いに「なぜその関係になったのか」を簡単に話し合ってみてください。過去のエピソードが一つできるだけで、セッション中の掛け合いが何倍も楽しくなります。</p>
+
+<h1>4. 判定のルール</h1>
+<p><strong>2d6</strong>を振り、<strong>技能値以下</strong>なら成功。</p>
+<table>
+    <thead> <tr><th>技能値</th><th>目標値</th><th>成功率</th><th>心理</th></tr> </thead>
+    <tbody>
+        <tr><td>3</td><td>3以下</td><td>約8%</td><td>神頼み</td></tr>
+        <tr><td>4</td><td>4以下</td><td>約17%</td><td>ダメ元</td></tr>
+        <tr><td>5</td><td>5以下</td><td>約28%</td><td>たまに成功</td></tr>
+        <tr><td>6</td><td>6以下</td><td>約42%</td><td>半分くらい</td></tr>
+        <tr><td>7</td><td>7以下</td><td>約58%</td><td>まあまあ</td></tr>
+        <tr><td>8</td><td>8以下</td><td>約72%</td><td>だいたい成功</td></tr>
+        <tr><td>9</td><td>9以下</td><td>約83%</td><td>ほぼ確実</td></tr>
+        <tr><td>10</td><td>10以下</td><td>約92%</td><td>任せなさい</td></tr>
+    </tbody>
+</table>
+<p><strong>クリティカルとファンブル</strong></p>
+<table>
+    <thead> <tr><th>出目</th><th>名称</th><th>効果</th></tr> </thead>
+    <tbody>
+        <tr><td>2ゾロ</td><td>スーパークリティカル</td><td>成功＋良いこと。獲得数+2、DP+2</td></tr>
+        <tr><td>3〜11のゾロ目で成功</td><td>クリティカル</td><td>成功＋良いこと。獲得数+1、DP+1</td></tr>
+        <tr><td>3〜11のゾロ目で失敗</td><td>なし</td><td>通常の失敗</td></tr>
+        <tr><td>12ゾロ</td><td>ファンブル</td><td>失敗＋悪いこと。獲得数-1</td></tr>
+    </tbody>
+</table>
+<div class="note">ゾロ目でも成功していなければクリティカルにならない。スーパークリティカルは必ず成功。</div>
+
+<h1>5. スポットライトとドラマチックポイント</h1>
+<p><strong>スポットライト獲得数</strong>は勝利に直結。初期値以下の成功、クリティカル、ロールプレイ、キャッチフレーズ、「ナイス！」で増加。ファンブルで減少。</p>
+<p><strong>ドラマチックポイント（DP）</strong>上限5。初期値以下の成功、クリティカル、スーパークリティカル、ロールプレイ、キャッチフレーズで増加。使い道：見せ場演出（DP2、1セッション2回）、固有スキル、必殺技（DP3、1セッション1回）。</p>
+<div class="note">見せ場演出では判定自動成功、振り直し、敵弱体化、シーン支配、スポットライト強奪が選べる。</div>
+
+<h1>6. 戦闘ルール（詳細）</h1>
+<p>1ラウンド＝ゲーム内約5～10秒。行動順はスポットライト獲得数順。通常攻撃、技能使用、防御専念、かばう、見せ場演出、固有スキル、必殺技が選択可能。</p>
+<p><strong>複数回攻撃</strong>：2回目以降は累積-2ペナルティ。</p>
+<p><strong>ダメージと武器</strong>（目安）</p>
+<table>
+    <thead> <tr><th>武器種別</th><th>ダメージ</th></tr> </thead>
+    <tbody>
+        <tr><td>素手・格闘</td><td>1d6</td></tr>
+        <tr><td>小型武器</td><td>1d6+1</td></tr>
+        <tr><td>片手武器</td><td>2d6</td></tr>
+        <tr><td>両手武器</td><td>2d6+2</td></tr>
+        <tr><td>射撃武器</td><td>2d6</td></tr>
+        <tr><td>投擲武器</td><td>1d6+1</td></tr>
+        <tr><td>必殺技</td><td>4d6</td></tr>
+    </tbody>
+</table>
+
+<h1>7. 防御の詳細ルール</h1>
+<p>攻撃命中後、防御側は「回避」か「防御」を選択する。</p>
+<h2>7.1 回避（完全回避）</h2>
+<ul>
+    <li>1ラウンドに1回のみ。判定成功でダメージ完全無効。</li>
+    <li>回避を選んだラウンドは攻撃・防御・その他の行動不可。</li>
+    <li>回避を選んだラウンドは防御を選べない。</li>
+</ul>
+<h2>7.2 防御（ダメージ半減）</h2>
+<ul>
+    <li>回数制限なし。判定成功でダメージ半減（切り上げ）。</li>
+    <li>防御を選んでもそのラウンド中に攻撃可能。</li>
+    <li>防御を選んだラウンドは回避を選べない。</li>
+    <li>同一ラウンド内2回目以降の防御判定は1回ごとに<strong>-2累積ペナルティ</strong>。</li>
+</ul>
+<p>防御判定でもクリティカル・ファンブルが発生。</p>
+
+<h1>8. 装甲と武器耐久ルール</h1>
+<h2>8.1 装甲ルール</h2>
+<table>
+    <thead> <tr><th>種別</th><th>装甲値</th><th>耐久値</th><th>ペナルティ</th></tr> </thead>
+    <tbody>
+        <tr><td>軽装備</td><td>2</td><td>5</td><td>なし</td></tr>
+        <tr><td>中装備</td><td>4</td><td>15</td><td>隠密・走破-1</td></tr>
+        <tr><td>重装備</td><td>6</td><td>20</td><td>隠密・走破-2、回避-1</td></tr>
+    </tbody>
+</table>
+<p>受けるダメージから装甲値を軽減。耐久値は軽減前のダメージ分減少し、0で破壊。修理技能（目標値8）で全快復元（戦闘中は1ラウンド消費）。</p>
+<h2>8.2 武器耐久ルール</h2>
+<p>武器は攻撃では耐久減少なし。以下の場合のみ減少：武器で防御（-1）、武器自体が攻撃を受けた場合（-1）、ファンブル時（-2）。耐久0で破損。修理（目標値8）で全快復元。手入れ（戦闘外シーン、1シナリオ1回）で+2回復。</p>
+<table>
+    <thead> <tr><th>武器種別</th><th>ダメージ</th><th>耐久値</th></tr> </thead>
+    <tbody>
+        <tr><td>素手・格闘</td><td>1d6</td><td>∞</td></tr>
+        <tr><td>小型武器</td><td>1d6+1</td><td>10</td></tr>
+        <tr><td>片手武器</td><td>2d6</td><td>20</td></tr>
+        <tr><td>両手武器</td><td>2d6+2</td><td>25</td></tr>
+        <tr><td>射撃武器</td><td>2d6</td><td>15</td></tr>
+        <tr><td>投擲武器</td><td>1d6+1</td><td>5</td></tr>
+        <tr><td>盾（中型）</td><td>-</td><td>15</td></tr>
+        <tr><td>大盾</td><td>-</td><td>25</td></tr>
+    </tbody>
+</table>
+
+<h1>9. 武器防御ルール</h1>
+<p>装備武器で攻撃を受け止める（防御技能）。武器の装甲値：片手武器3、両手武器5、素手1、盾4/6。小型武器・射撃・投擲は装甲0（防御不可）。武器防御と装甲は併用可。盾による防御と武器防御は同時に不可。</p>
+
+<h1>10. トークンルール</h1>
+<p>カードバトラー、ロボマイスター、アヤカシ使い、ゴリラマスターは自分のターンにトークン召喚可（行動消費なし）。トークンは親と同じステータス。親が通常攻撃・必殺技を選んだ場合、トークンが代行。親は直接攻撃を受けない。HP0で破壊、修理判定（目標8）成功で次のターン開始時に全快再召喚。</p>
+
+<h1>11. ジョブの物語——君は、どんな主人公になる？</h1>
+<!-- 以下16ジョブ（画像サイズ280pxだが印刷時は200pxに縮小される） -->
+<div class="job-story"><div class="job-header"><img src="images/hero.png" alt="ヒーロー" class="job-image"><h3>ヒーロー——正義の心、ここにあり</h3></div><p><strong>得意：</strong>格闘、防御、かばう。<br><strong>不得意：</strong>奪取、嘘。<br><strong>特徴：</strong>ピンチになるほど真価を発揮する。</p><p>どんな困難も、どんな悪党も、己の拳一つで打ち砕く。時に暑苦しく、時に単純。それでも、そのまっすぐな心が人を動かし、仲間を呼び寄せる。正義の味方に、悪は決して勝てない。そう信じている——それが、ヒーローというものだ。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/ninja.png" alt="忍者" class="job-image"><h3>忍者——影に生き、影に死す</h3></div><p><strong>得意：</strong>隠密、投擲、観察。<br><strong>不得意：</strong>威圧、交渉。<br><strong>特徴：</strong>情報収集と奇襲を得意とする。</p><p>影に生き、影に死す。それが忍の道。表舞台には立たず、物語を裏から動かす。真実は闇の中に隠れている。忍者の使命は、その真実を暴き、時に自らの手で闇を断つことだ。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/idol.png" alt="アイドル" class="job-image"><h3>アイドル——みんなの笑顔が、私のパワー！</h3></div><p><strong>得意：</strong>パフォーマンス、交渉、幸運。<br><strong>不得意：</strong>格闘、防御。<br><strong>特徴：</strong>ファンの声援が力に。</p><p>みんなの笑顔が、私のパワー！ ステージの上では太陽のように輝き、ファンの心を掴む。アイドルは一人では輝けない。誰かの笑顔があってこそ、自分が輝ける——それを知っている。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/swordsman.png" alt="剣士" class="job-image"><h3>剣士——我が剣に、曇りなし！</h3></div><p><strong>得意：</strong>剣術、体術、防御。<br><strong>不得意：</strong>操作、変装。<br><strong>特徴：</strong>一対一の勝負に絶対の自信を持つ孤高の剣豪。</p><p>一本の剣に己の全てを懸ける。その一振りには人生が込められている。孤独な修行の果てに、背中を預け合える仲間の尊さを知る。「俺の剣は、お前のためにある」</p></div>
+<div class="job-story"><div class="job-header"><img src="images/inventor.png" alt="発明家" class="job-image"><h3>発明家——科学の力で、不可能を可能に！</h3></div><p><strong>得意：</strong>修理、操作、制作。<br><strong>不得意：</strong>格闘、直感。<br><strong>特徴：</strong>機転とアイデアでピンチを切り抜ける頭脳派。</p><p>「こうなったらいいのに」を形にする者。爆発し、煙をあげ、笑いものになる。それでも諦めない。失敗は成功の母。そのプロセスこそが、誰かを勇気づける。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/athlete.png" alt="アスリート" class="job-image"><h3>アスリート——限界は、自分で作るものだ！</h3></div><p><strong>得意：</strong>走破、ジャンプ、体術。<br><strong>不得意：</strong>読心、学問。<br><strong>特徴：</strong>どんな状況でも諦めない根性の持ち主。</p><p>肉体の限界に挑み続ける。己を追い込む根性、どんな状況でも諦めない精神力。「もうダメだ」と思ったその先に、本当の自分がいる。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/phantom_thief.png" alt="怪盗" class="job-image"><h3>怪盗——予告通り、いただくよ</h3></div><p><strong>得意：</strong>奪取、逃避、隠密。<br><strong>不得意：</strong>格闘、威圧。<br><strong>特徴：</strong>華麗な手口で観客を魅了する義賊。</p><p>夜の闇に紛れ、人々の心を奪う華麗なる盗賊。予告状を送り、観客を魅了し、誰も傷つけずに目的を達成する。それが怪盗の美学。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/spy.png" alt="スパイ" class="job-image"><h3>スパイ——私が誰か、当ててみなよ</h3></div><p><strong>得意：</strong>変装、嘘、調査。<br><strong>不得意：</strong>格闘、制作。<br><strong>特徴：</strong>情報と戦略で物語を動かす知的でミステリアスな存在。</p><p>顔を変え、声を変え、情報を武器に暗躍する。表舞台の主人公にはなれない。しかし影で物語を動かしているのは、いつだってスパイだ。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/cook.png" alt="料理人" class="job-image"><h3>料理人——美味いものに、国境はない！</h3></div><p><strong>得意：</strong>制作（料理）、格闘、幸運。<br><strong>不得意：</strong>歴史、学問。<br><strong>特徴：</strong>食を通じて仲間を癒す癒し系主人公。</p><p>包丁一本、食を通じて人を幸せにする。「腹が減っては戦はできぬ」。疲れた戦士の心身を癒し、明日への力を与える。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/card_battler.png" alt="カードバトラー" class="job-image"><h3>カードバトラー——運命のカードを引け！</h3></div><p><strong>得意：</strong>幸運、嘘、直感。<br><strong>不得意：</strong>格闘、走破。<br><strong>特徴：</strong>運命の一枚で逆転を狙うギャンブラーのような主人公。</p><p>たった一組のカードで運命を切り開く。確率を読み、心理を読み、最善の一手を選ぶ。「俺のターン！」その一言で状況が一変する。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/police.png" alt="警察官" class="job-image"><h3>警察官——正義と秩序を守る。それが俺の仕事だ</h3></div><p><strong>得意：</strong>威圧、追跡、防御。<br><strong>不得意：</strong>嘘、隠密。<br><strong>特徴：</strong>堅物だけど頼りになる正義の執行者。</p><p>街の安全を守る公僕。法律と正義感、市民からの信頼を盾に悪と戦う。時に厳しく、時に優しく。「事件は現場で起きているんだ」</p></div>
+<div class="job-story"><div class="job-header"><img src="images/robo_master.png" alt="ロボマイスター" class="job-image"><h3>ロボマイスター——起動せよ！ バトル・スタート！</h3></div><p><strong>得意：</strong>修理、操作、制作。<br><strong>不得意：</strong>パフォーマンス、読心。<br><strong>特徴：</strong>相棒ロボと共に戦う機械仕掛けの友情物語。</p><p>機械と友達になる者。ロボットは手足であり、盾であり、心を預ける相棒。「起動確認。オールグリーン。行くぞ、相棒！」</p></div>
+<div class="job-story"><div class="job-header"><img src="images/student.png" alt="学生" class="job-image"><h3>学生——青春って、こんなに熱いんだ！</h3></div><p><strong>得意：</strong>走破、学問、幸運。<br><strong>不得意：</strong>威圧、嘘。<br><strong>特徴：</strong>若さと純粋さで壁をぶち破る青春の主人公。</p><p>朝練、授業、部活、恋愛——毎日が全力疾走。まだ何者でもないからこそ、何にでもなれる。失敗しても笑い飛ばせる。明日があるから。</p></div>
+<div class="job-story"><div class="job-header"><img src="images/detective.png" alt="探偵" class="job-image"><h3>探偵——真実は、いつも一つ</h3></div><p><strong>得意：</strong>観察、調査、直感。<br><strong>不得意：</strong>格闘、変装。<br><strong>特徴：</strong>謎を解き明かす知的エンターテインメントの主人公。</p><p>事件の裏に隠された真実を暴く知恵の探求者。誰も気づかない細部にこそ真実がある。「すべてのピースが、今、繋がった」</p></div>
+<div class="job-story"><div class="job-header"><img src="images/ayakashi.png" alt="アヤカシ使い" class="job-image"><h3>アヤカシ使い——我が式神よ、力を貸せ！</h3></div><p><strong>得意：</strong>幸運、直感、隠密。<br><strong>不得意：</strong>制作、威圧。<br><strong>特徴：</strong>目に見えない力と共に戦うオカルティックな主人公。</p><p>あやかしと契約し、その力を借りる異能者。友であり相棒であり、時に厳しい師匠。「出でよ、我が式神！」</p></div>
+<div class="job-story"><div class="job-header"><img src="images/gorilla_master.png" alt="ゴリラマスター" class="job-image"><h3>ゴリラマスター——ウホッ！ ゴリラゴリラゴリラ！</h3></div><p><strong>得意：</strong>格闘、投擲、威圧。<br><strong>不得意：</strong>操作、学問。<br><strong>特徴：</strong>ゴリラと共に戦場を駆け抜けるぶっとびパワー系主人公。</p><p>ゴリラと心を通わせる漢。語尾は「ウホッ！」——これが掟。拳を振り上げ、吼える。力と友情で壁をぶち破る、最も熱い主人公。</p></div>
+
+<h1>12. 固有スキル一覧</h1>
+<table>
+    <thead> <tr><th>ジョブ</th><th>スキル名</th><th>効果</th></tr> </thead>
+    <tbody>
+        <tr><td>ヒーロー</td><td>ジャスティスハート</td><td>常時：HP半分以下で全判定+1、与ダメージ+1</td></tr>
+        <tr><td>忍者</td><td>刃の心</td><td>DP2：次の判定自動成功、被ダメージ-2(1T)</td></tr>
+        <tr><td>アイドル</td><td>あなたのハートをロックオン！</td><td>常時：交渉・パフォーマンス・信用+1。パフォーマンス好評でスポットライト+1</td></tr>
+        <tr><td>剣士</td><td>二刀流</td><td>DP2：攻撃2回、両方成功で獲得数+1</td></tr>
+        <tr><td>発明家</td><td>実験を始めようか！</td><td>DP2：制作・修理+2、失敗で自傷1(1セッション2回)</td></tr>
+        <tr><td>アスリート</td><td>ド根性ッ！</td><td>常時：HP0を1度HP1で耐える＋即時自分のターン(1回/セッション)</td></tr>
+        <tr><td>怪盗</td><td>予告する</td><td>DP1：奪取自動成功＋離脱</td></tr>
+        <tr><td>スパイ</td><td>FAKE</td><td>DP2：このターン単体攻撃を受けない</td></tr>
+        <tr><td>料理人</td><td>Bon appétit</td><td>DP2：全員HP1d6回復＋料理説明で美味しそうならスポットライト+1</td></tr>
+        <tr><td>カードバトラー</td><td>俺のターン！</td><td>DP3：1d6→1-2：次攻撃自動成功＆ダメ2倍／3-4：判定やり直し+技能値+2／5-6：他者にスポットライト+2,DP+2,次判定+1</td></tr>
+        <tr><td>警察官</td><td>実力を行使</td><td>常時：威圧・追跡+1、善行語りでスポットライト+1</td></tr>
+        <tr><td>ロボマイスター</td><td>バトル・スタート！</td><td>DP2：ロボトークンHP全回復(1回/セッション)</td></tr>
+        <tr><td>学生</td><td>青い春</td><td>常時：走破・学問+1、青春語りでスポットライト+1</td></tr>
+        <tr><td>探偵</td><td>『名探偵』の名にかけて</td><td>DP2：味方判定+2、自分【動揺】</td></tr>
+        <tr><td>アヤカシ使い</td><td>ウォッチ！</td><td>DP2：HP半分以下で次攻撃+2、出目6以上で次ラウンド終了まで【動揺】(1回/セッション)</td></tr>
+        <tr><td>ゴリラマスター</td><td>ゴリラゴリラゴリラ</td><td>常時：ゴリラトークン攻撃+2、状態異常適用、語尾「ウホッ！」</td></tr>
+    </tbody>
+</table>
+
+<h1>13. 必殺技——極限の一瞬</h1>
+<p>必殺技はDP3を消費し、1セッション1回。名前は自由。</p>
+<table>
+    <thead> <tr><th>ジョブ</th><th>効果</th></tr> </thead>
+    <tbody>
+        <tr><td>ヒーロー</td><td>敵1体に大ダメージ（4d6）</td></tr>
+        <tr><td>忍者</td><td>分身を作り攻撃を完全回避</td></tr>
+        <tr><td>アイドル</td><td>敵全員を魅了し1ターン行動不能</td></tr>
+        <tr><td>剣士</td><td>2回連続攻撃（各2d6）</td></tr>
+        <tr><td>発明家</td><td>味方全員のHP完全回復</td></tr>
+        <tr><td>アスリート</td><td>次の行動を自動成功</td></tr>
+        <tr><td>怪盗</td><td>戦闘離脱、安全な場所へ移動</td></tr>
+        <tr><td>スパイ</td><td>敵1体を一時的に味方にする</td></tr>
+        <tr><td>料理人</td><td>全員HP半分回復＋次判定+1</td></tr>
+        <tr><td>カードバトラー</td><td>直前の判定をやり直させる</td></tr>
+        <tr><td>警察官</td><td>敵全員1d6ダメージ＋次判定-1</td></tr>
+        <tr><td>ロボマイスター</td><td>味方全員HP完全回復＋機械系技能+1</td></tr>
+        <tr><td>学生</td><td>敵1体の攻撃を完全無効化</td></tr>
+        <tr><td>探偵</td><td>敵1体の弱点看破、次の味方攻撃+2</td></tr>
+        <tr><td>アヤカシ使い</td><td>アヤカシと合体し1ターン全判定+2</td></tr>
+        <tr><td>ゴリラマスター</td><td>敵全員2d6ダメージ</td></tr>
+    </tbody>
+</table>
+
+<h1>14. 技能一覧（詳細解説付き）</h1>
+<table>
+    <thead> <tr><th>系統</th><th>技能</th><th>できること</th></tr> </thead>
+    <tbody>
+        <tr><td rowspan="7">⚔️ 戦闘系</td><td>剣術</td><td>剣による攻撃、受け流し、斬撃系必殺技。敵の武器を弾くことも可能。</td></tr>
+        <tr><td>射撃</td><td>弓・銃による遠距離攻撃、狙撃、牽制射撃。動く標的への射撃も可。</td></tr>
+        <tr><td>格闘</td><td>パンチ、キック、投げ技、関節技。組み付きから相手を制圧できる。</td></tr>
+        <tr><td>投擲</td><td>ナイフ、手裏剣、石などの投擲。物を正確に目標に投げる。</td></tr>
+        <tr><td>回避</td><td>攻撃をかわす、罠を避ける、転倒を防ぐ。身のこなし全般。</td></tr>
+        <tr><td>防御</td><td>盾や武器で受け止める、ガード、体勢を低くして耐える。</td></tr>
+        <tr><td>拘束</td><td>組み付き、捕縛、手錠や縄を使った拘束。逃げられなくする。</td></tr>
+        <tr><td rowspan="6">🔍 探索系</td><td>観察</td><td>隠し扉や罠を発見、相手の微妙な表情変化を読み取る、細かな違和感に気づく。</td></tr>
+        <tr><td>捜索</td><td>部屋の中から隠し金庫を探す、証拠品を収集する、宝を発見する。</td></tr>
+        <tr><td>隠密</td><td>物音を立てずに移動、尾行、忍び込み。監視カメラを避ける。</td></tr>
+        <tr><td>生存</td><td>野営、食料調達、天候予測、方向感覚。毒草・毒虫の見極め。</td></tr>
+        <tr><td>追跡</td><td>足跡や残り香をたどる、逃亡者の行方を特定する。</td></tr>
+        <tr><td>逃避</td><td>追跡から逃げる、危険地帯から素早く離脱する。かくまう場所を見つける。</td></tr>
+        <tr><td rowspan="6">⚙️ 技術系</td><td>修理</td><td>武器や機械の修理、応急処置的な修理。工具を使った工作。</td></tr>
+        <tr><td>操作</td><td>コンピュータ操作、機械の起動・停止、装置の使用。</td></tr>
+        <tr><td>運転</td><td>車、バイク、船、飛行機などの運転。難しい操縦もこなす。</td></tr>
+        <tr><td>医療</td><td>応急処置、毒の解毒、病気の診断。手術や投薬も可能。</td></tr>
+        <tr><td>奪取</td><td>スリ、鍵開け、ポケットから物を抜き取る。金庫破り。</td></tr>
+        <tr><td>制作</td><td>武器や道具の製作、料理、クラフト。材料から物を生み出す。</td></tr>
+        <tr><td rowspan="6">📖 知識系</td><td>学問</td><td>歴史、科学、魔法知識、文献解読。難しい専門用語を理解する。</td></tr>
+        <tr><td>読心</td><td>嘘を見抜く、本音を察知する、相手の心理を分析する。</td></tr>
+        <tr><td>幸運</td><td>偶然の好転を引き寄せる、運試し、奇跡的な出来事を起こす。</td></tr>
+        <tr><td>直感</td><td>危険察知、即断即決、閃き。何かがおかしいと感じる。</td></tr>
+        <tr><td>歴史</td><td>遺跡や古文書の解読、伝承の理解。過去の事件を調べる。</td></tr>
+        <tr><td>調査</td><td>聞き込み、資料調査、情報分析。真相を掘り起こす。</td></tr>
+        <tr><td rowspan="6">🗣️ 社交系</td><td>交渉</td><td>値切り、取引、説得。妥協点を見つける。</td></tr>
+        <tr><td>信用</td><td>信頼関係を築く、協力者を獲得する、情報を引き出す。</td></tr>
+        <tr><td>嘘</td><td>偽情報を伝える、偽装工作。相手を欺く。</td></tr>
+        <tr><td>威圧</td><td>脅す、強制する、相手を怯えさせる。睨みつけて黙らせる。</td></tr>
+        <tr><td>変装</td><td>別人になりすます、声色を変える。メイクや衣装で偽装。</td></tr>
+        <tr><td>パフォーマンス</td><td>歌、ダンス、演説、芸術表現。観客を魅了する。</td></tr>
+        <tr><td rowspan="6">🏃 アクション系</td><td>体術</td><td>アクロバット、バランス感覚、マーシャルアーツ。柔軟な動き。</td></tr>
+        <tr><td>走破</td><td>長距離走、ダッシュ、障害物を走り抜ける。</td></tr>
+        <tr><td>挑発</td><td>敵の注意を引く、怒らせる、誘導。わざと隙を見せる。</td></tr>
+        <tr><td>ジャンプ</td><td>高跳び、幅跳び、障害物を飛び越える。落下を和らげる。</td></tr>
+        <tr><td>かばう</td><td>仲間をかばう、盾になる。攻撃を代わりに受ける。</td></tr>
+        <tr><td>クライミング</td><td>壁登り、崖登り、ロープ登り。垂直の壁もよじ登る。</td></tr>
+    </tbody>
+</table>
+
+<h1>15. ロールプレイを盛り上げるシステム</h1>
+<p><strong>「ナイス！」</strong>：PLは3回、GMは5回まで他者の良い行動を称賛でき、称賛された人はスポットライト+1（GMからならDPも+1）。<br>
+<strong>スキル名コール</strong>：固有スキルや必殺技を使う時、名前を叫ぶ。全力度に応じてGMがボーナスを与えることも。<br>
+<strong>スポットライト賞</strong>：セッション終了後、MVPシーンを投票。受賞者は獲得数+1（勝利とは無関係）。</p>
+
+<h1>16. ロールプレイが苦手な方向け補助ルール</h1>
+<p><strong>アクションポイント方式</strong>：チームを助ける、明確な行動宣言、戦術的な発言、他PLのフォローで自動的に獲得数+1、DP+1。<br>
+<strong>ミッションカード方式</strong>：セッション開始時にミッションを引き、達成で獲得数+1。<br>
+<strong>テンプレート発言方式</strong>：「行くぞ！」「もらった！」など定型文を言うだけでロールプレイとして認定。<br>
+<strong>バディシステム</strong>：ロールプレイ得意な人とペアを組み、苦手な人の意思を代弁。協力で両者にボーナス。</p>
+
+<h1>17. GM（原作者）の役割</h1>
+<p>舞台と大まかな流れを用意し、NPCを演じ、プレイヤーの想定外の行動を面白がる。「ダメです」は禁止、代わりに「どうなるかな？」を使う。勝敗はシステムに委ね、あなたは神ではない。</p>
+
+<h1>18. 用語集</h1>
+<p><strong>スポットライト獲得数</strong>：勝利に直結する数値。主人公らしい行動で増加。<br>
+<strong>ドラマチックポイント（DP）</strong>：必殺技や見せ場に使うポイント。上限5。<br>
+<strong>ナイス！</strong>：相互評価システム。<br>
+<strong>固有スキル</strong>：ジョブごとの特殊能力。<br>
+<strong>必殺技</strong>：DP3消費の強力な技。<br>
+<strong>技能値</strong>：3～10。判定は2d6≦技能値。<br>
+<strong>スーパークリティカル</strong>：2ゾロ。獲得数+2、DP+2。<br>
+<strong>クリティカル</strong>：ゾロ目かつ成功。獲得数+1、DP+1。<br>
+<strong>ファンブル</strong>：12ゾロ。獲得数-1。<br>
+<strong>見せ場演出</strong>：DP2で強力な効果。<br>
+<strong>装甲値／耐久値</strong>：ダメージ軽減と消耗。<br>
+<strong>武器耐久</strong>：防御や被弾で減少、修理や手入れで回復。<br>
+<strong>トークン</strong>：特定ジョブが召喚する相棒。</p>
+
+<h1>19. アドバンスド・ロールプレイ・ルール（任意）</h1>
+<h2>19.1 モノローグ権</h2>
+<p><strong>効果</strong>：セッション中1回だけ、キャラクターの心の声を語る時間を得る。<br>
+<strong>ルール</strong>：タイミング自由。30秒～1分。他のプレイヤーとGMは静かに聞き、終わったら拍手。<br>
+<strong>報酬</strong>：内容に応じてスポットライト+1～2、さらにDP+1も可。</p>
+<h3>拡張：バックボーン・モノローグ（初回限定）</h3>
+<p>初セッション開始時に、キャラクターの過去エピソードを語る。でっち上げ可。面白ければスポットライト+1、DP+1。</p>
+<h2>19.2 前回のあらすじ（継続セッション限定）</h2>
+<p>継続セッション開始時に前回の出来事を語る。脚色自由。面白ければDP+1。ツッコミが面白かった人にもスポットライト+1。</p>
+<h2>19.3 エピローグ劇場</h2>
+<p>本編終了後、「その後」を即興で演じる。全員が演じ終わった後、もう一度だけスポットライト獲得数を集計し、最も印象的だった人に+1（全員投票）。</p>
+<h2>19.4 導入時の注意点</h2>
+<ul><li>無理強いしない。</li><li>時間配分に注意。</li><li>初心者向けセッションでは使わない。</li></ul>
+
+<h1>20. 配信・二次創作ガイドライン</h1>
+<p>このゲームは「遊んで楽しい、見て楽しいTRPG」です。以下のガイドラインに従って、楽しく配信・二次創作を行ってください。</p>
+<h2>20.1 基本方針</h2>
+<p><strong>配信・動画アップロード・商用利用は完全に自由です。</strong> 事前申請・事後報告は一切不要です。</p>
+<ul>
+    <li>個人配信（Twitch/YouTube/ニコニコ生放送など）</li>
+    <li>プレイ動画のアップロード、VOD公開、スクリーンショット共有</li>
+    <li><strong>有料配信・有料動画</strong>、<strong>商用イベント</strong>、<strong>企業利用</strong>もOK</li>
+</ul>
+<p>収益（広告収入、スーパーチャットなど）は全て配信者のものとなります。</p>
+
+<h2>20.2 ルールの記載・公開について</h2>
+<p>視聴者への説明に必要な範囲でのルール記載は問題ありません（例：判定表、キャラシートの書き方）。ただし、ルールブックの<strong>全文をそのまま公開する行為はご遠慮ください</strong>。有料販売コンテンツの無断公開に該当する可能性があります。</p>
+<div class="note">判断に迷ったら「必要最小限」を心がけてください。常識の範囲内でお願いします。</div>
+
+<h2>20.3 著作権と権利関係</h2>
+<ul>
+    <li><strong>このゲームの著作権は放棄・譲渡しておりません。</strong> ルール、テキスト、デザイン等は作者に帰属します。</li>
+    <li>配信・動画化によって著作権が移動することはありません。</li>
+    <li>二次創作（シナリオ公開、ファンアートなど）は大歓迎ですが、その著作権は二次創作作者に帰属します（ただし、ゲームの原著作物の権利を侵害しない範囲で）。</li>
+</ul>
+
+<h2>20.4 禁止事項</h2>
+<ul>
+    <li><strong>作者になりすます行為</strong>（「公式です」「作者です」と名乗る）</li>
+    <li><strong>著作権表示の削除</strong>（クレジットを消しての利用）</li>
+    <li><strong>誹謗中傷・風評被害を目的とした利用</strong>（実在・架空を問わず、特定の人物・団体を貶める目的）</li>
+    <li><strong>ルールブック全文の無断公開・再配布</strong></li>
+</ul>
+
+<h2>20.5 二次創作について</h2>
+<p><strong>オリジナルシナリオの公開、ファンアートの投稿は大歓迎です。</strong> ぜひ「#スポットライト・ダイブ」タグを付けて発信してください。作者が喜びます。</p>
+<ul>
+    <li>シナリオの有料販売は原則OKですが、一声かけていただけると嬉しいです（基本的に許可します）。</li>
+    <li>他の方が作ったシナリオを無断転載する行為は禁止します。</li>
+</ul>
+
+<h2>20.6 免責事項</h2>
+<div class="note">このゲームを利用して発生したいかなるトラブルについて、作者（スポットライト・ダイブ製作委員会）は一切の責任を負いません。利用はすべて自己責任でお願いします。</div>
+
+<h2>20.7 想定されるQ&A</h2>
+<div class="qa-block">
+    <div class="qa-question">Q. 配信アーカイブはずっと残しても良いですか？</div>
+    <div class="qa-answer">A. はい、問題ありません。むしろ「この配信を見て購入しました」という声が増えると作者は喜びます。</div>
+    <div class="qa-question">Q. 投げ銭（スパチャ）を受け取っても良いですか？</div>
+    <div class="qa-answer">A. はい、全て配信者の収入となります。作者への分配などは一切不要です。</div>
+    <div class="qa-question">Q. 海外の配信者が翻訳して遊んでも良いですか？</div>
+    <div class="qa-answer">A. はい、大歓迎です。ただし、翻訳版ルールブックを再配布する行為はご相談ください。</div>
+    <div class="qa-question">Q. 企業の社内研修で使いたいのですが？</div>
+    <div class="qa-answer">A. 商用利用に含まれますが、問題なくご利用いただけます。チームビルディングなどに役立ててください。</div>
+    <div class="qa-question">Q. このガイドラインには法的拘束力がありますか？</div>
+    <div class="qa-answer">A. いいえ。作者の「こうしてくれると嬉しい」というお願いと「これはやめてね」という意思表示です。ただし、常識の範囲内でご協力をお願いします。</div>
+    <div class="qa-question">Q. 自作のキャラクターシートや追加ルールを配布しても良いですか？</div>
+    <div class="qa-answer">A. はい、非営利であれば自由に配布可能です。営利目的の場合は一声かけていただけると助かります。</div>
+</div>
+
+<h2>20.8 連絡先</h2>
+<p><strong>スポットライト・ダイブ製作委員会</strong><br>
+X（旧Twitter）：<strong>@tsubasa_s_every</strong><br>
+ご質問やご報告はこちらまで。使わせてもらったよ！という連絡も大歓迎です。</p>
+
+<footer>
+    © 2026 スポットライト・ダイブ製作委員会<br>
+    本ルールブックはβ版です。内容は予告なく変更されることがあります。
+</footer>
+
+</body>
+</html>
